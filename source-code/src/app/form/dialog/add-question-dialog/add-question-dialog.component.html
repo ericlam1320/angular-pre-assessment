@@ -1,21 +1,21 @@
-<h1 mat-dialog-title>Form Title</h1>
+<h1 mat-dialog-title>Question Answer Form</h1>
 <div mat-dialog-content>
-    <form [formGroup]="answersQuestionForm">
-        <ng-container formArrayName="answersQuestionArray">
-            <ng-container [formGroupName]="idx" *ngFor="let item of answersQuestionForm.controls['answersQuestionArray']['controls']; let idx = index">
-                <ng-container [ngSwitch]="item?.value?.type">
+    <form [formGroup]="addQAFormGroup" *ngIf="addQAFormGroup">
+        <ng-container formArrayName="addQAFormArray" *ngFor="let QAItem of QAList; let QAIndex = index">
+            <ng-container [formGroupName]="QAIndex">
+                <ng-container [ngSwitch]="QAItem.type">
                     <ng-container *ngSwitchCase="'PARAGRAPH'">
                         <mat-form-field appearance="outline" [style.width.%]=100>
-                            <mat-label>{{ item?.value?.question }}</mat-label>
-                            <textarea matInput formControlName="answers"></textarea>
+                            <mat-label>{{ QAItem.question }}</mat-label>
+                            <textarea matInput formControlName="answer"></textarea>
                         </mat-form-field>
                     </ng-container>
                     <ng-container *ngSwitchCase="'CHECKBOX'">
                         <mat-form-field class="example-chip-list" appearance="outline" [style.width.%]=100>
-                            <mat-label>{{ item?.value?.question }}</mat-label>
-                            <mat-chip-list #chipList formControlName="answers">
-                                <mat-chip *ngFor="let checkboxItem of item?.value?.answers" (removed)="removeCheckboxItem(checkboxItem, item?.value?.answers, item)">
-                                    {{ checkboxItem }}
+                            <mat-label>{{ QAItem.question }}</mat-label>
+                            <mat-chip-list #chipList formControlName="answer">
+                                <mat-chip *ngFor="let answerItem of QAItem.answer" (removed)="removeAnswerItem(answerItem, QAItem)">
+                                    {{ answerItem }}
                                     <button matChipRemove>
                                         <mat-icon>cancel</mat-icon>
                                     </button>
@@ -24,7 +24,7 @@
                                        [matChipInputFor]="chipList"
                                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                                        [matChipInputAddOnBlur]="addOnBlur"
-                                       (matChipInputTokenEnd)="addCheckboxItem($event, item?.value?.answers, item)">
+                                       (matChipInputTokenEnd)="addAnswerItem($event, QAItem)">
                             </mat-chip-list>
                         </mat-form-field>
                     </ng-container>
@@ -32,7 +32,9 @@
             </ng-container>
         </ng-container>
     </form>
+    <button mat-stroked-button color="primary" (click)="showAddNewQuestionModal()">Add New Question</button>
 </div>
 <div mat-dialog-actions align="end">
-    <button mat-button cdkFocusInitial (click)="onSubmit()">Review my answers</button>
+    <button mat-button (click)="onClose()">Cancel</button>
+    <button mat-button color="primary" [disabled]="addQAFormGroup.invalid" (click)="onSubmit()">Review my answers</button>
 </div>

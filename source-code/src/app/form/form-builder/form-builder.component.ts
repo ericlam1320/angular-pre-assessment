@@ -10,7 +10,7 @@ import { AddQuestionDialogComponent } from '../dialog/add-question-dialog/add-qu
 export class FormBuilderComponent implements OnInit {
 
     constructor(
-        private readonly matDialog: MatDialog
+        private readonly matDialog: MatDialog,
     ) { }
 
     ngOnInit(): void {

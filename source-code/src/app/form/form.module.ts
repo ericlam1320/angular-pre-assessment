@@ -13,12 +13,15 @@ import { FormBuilderComponent } from './form-builder/form-builder.component';
 import { FormAnswersComponent } from './form-answers/form-answers.component';
 import { FormRoutesModule } from './form.routes';
 import { AddQuestionDialogComponent } from './dialog/add-question-dialog/add-question-dialog.component';
+import { AddNewQuestionDialogComponent } from './dialog/add-new-question-dialog/add-new-question-dialog.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
     declarations: [
         FormBuilderComponent,
         FormAnswersComponent,
-        AddQuestionDialogComponent
+        AddQuestionDialogComponent,
+        AddNewQuestionDialogComponent
     ],
     imports: [
         CommonModule,
@@ -31,6 +34,7 @@ import { AddQuestionDialogComponent } from './dialog/add-question-dialog/add-que
         MatInputModule,
         MatChipsModule,
         MatIconModule,
+        MatSelectModule,
     ]
 })
 export class FormModule { }
