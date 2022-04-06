@@ -8,11 +8,5 @@ import { Router } from '@angular/router';
 })
 export class FormComponent {
 
-    constructor(
-        private readonly router: Router
-    ) { }
-
-    public moveToBuilder(): void {
-        this.router.navigate(['/form/builder']);
-    }
+    constructor() { }
 }

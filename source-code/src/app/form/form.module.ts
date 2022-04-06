@@ -8,20 +8,23 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
 
 import { FormBuilderComponent } from './form-builder/form-builder.component';
 import { FormAnswersComponent } from './form-answers/form-answers.component';
 import { FormRoutesModule } from './form.routes';
 import { AddQuestionDialogComponent } from './dialog/add-question-dialog/add-question-dialog.component';
 import { AddNewQuestionDialogComponent } from './dialog/add-new-question-dialog/add-new-question-dialog.component';
-import { MatSelectModule } from '@angular/material/select';
+
 
 @NgModule({
     declarations: [
         FormBuilderComponent,
         FormAnswersComponent,
         AddQuestionDialogComponent,
-        AddNewQuestionDialogComponent
+        AddNewQuestionDialogComponent,
     ],
     imports: [
         CommonModule,
@@ -35,6 +38,8 @@ import { MatSelectModule } from '@angular/material/select';
         MatChipsModule,
         MatIconModule,
         MatSelectModule,
+        MatCardModule,
+        MatListModule,
     ]
 })
 export class FormModule { }

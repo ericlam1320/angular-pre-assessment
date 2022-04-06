@@ -6,11 +6,11 @@ import { FormAnswersComponent } from './form-answers/form-answers.component';
 const formRoutes: Routes = [
     { path: '', redirectTo: 'builder', pathMatch: 'full' },
     { path: 'builder', component: FormBuilderComponent },
-    { path: 'answers', component: FormAnswersComponent }
+    { path: 'answers', component: FormAnswersComponent },
 ];
 
 @NgModule({
     imports: [RouterModule.forChild(formRoutes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
 export class FormRoutesModule { }

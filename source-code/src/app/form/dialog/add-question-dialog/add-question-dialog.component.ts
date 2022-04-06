@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
+
 import { AddNewQuestionDialogComponent } from '../add-new-question-dialog/add-new-question-dialog.component';
 import { FormItems } from '../../../models/form';
 
@@ -22,7 +23,7 @@ export class AddQuestionDialogComponent implements OnInit {
     constructor(
         private readonly dialogRef: MatDialogRef<AddQuestionDialogComponent>,
         private readonly formBuilder: FormBuilder,
-        private readonly matDialog: MatDialog
+        private readonly matDialog: MatDialog,
     ) { }
 
     get addQAFormArray(): FormArray {
@@ -34,7 +35,7 @@ export class AddQuestionDialogComponent implements OnInit {
     }
 
     onSubmit(): void {
-        console.log(this.addQAFormGroup);
+        this.dialogRef.close(this.addQAFormArray.value);
     }
 
     onClose(): void {
@@ -58,12 +59,14 @@ export class AddQuestionDialogComponent implements OnInit {
 
     showAddNewQuestionModal(): void {
         this.matDialog.open(AddNewQuestionDialogComponent, { width: '600px' }).afterClosed().subscribe((response: FormItems) => {
-            this.QAList.push(response);
-            this.addQAFormArray.push(this.formBuilder.group({
-                type: [response.type],
-                question: [response.question],
-                answer: [response.answer, Validators.required]
-            }));
+            if (response) {
+                this.QAList.push(response);
+                this.addQAFormArray.push(this.formBuilder.group({
+                    type: [response.type],
+                    question: [response.question],
+                    answer: [response.answer, Validators.required],
+                }));
+            }
         });
     }
 
@@ -89,7 +92,7 @@ export class AddQuestionDialogComponent implements OnInit {
             this.addQAFormArray.push(this.formBuilder.group({
                 type: [item.type],
                 question: [item.question],
-                answer: [item.answer, Validators.required]
+                answer: [item.answer, Validators.required],
             }));
         });
     }

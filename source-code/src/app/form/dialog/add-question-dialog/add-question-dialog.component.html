@@ -14,7 +14,8 @@
                         <mat-form-field class="example-chip-list" appearance="outline" [style.width.%]=100>
                             <mat-label>{{ QAItem.question }}</mat-label>
                             <mat-chip-list #chipList formControlName="answer">
-                                <mat-chip *ngFor="let answerItem of QAItem.answer" (removed)="removeAnswerItem(answerItem, QAItem)">
+                                <mat-chip *ngFor="let answerItem of QAItem.answer"
+                                          (removed)="removeAnswerItem(answerItem, QAItem)">
                                     {{ answerItem }}
                                     <button matChipRemove>
                                         <mat-icon>cancel</mat-icon>

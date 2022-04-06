@@ -54,7 +54,7 @@ export class AddNewQuestionDialogComponent implements OnInit {
         this.addNewQAFormGroup = this.formBuilder.group({
             type: ['', Validators.required],
             question: ['', Validators.required],
-            answer: ['', Validators.required]
+            answer: ['', Validators.required],
         });
     }
 }

@@ -1,1 +1,24 @@
-<p>form-answers works!</p>
+<ng-container *ngIf="qaData; else templateEmptyQA">
+    <ng-container *ngFor="let qaItem of qaData">
+        <mat-card style="width: 30%; margin: 20px;">
+            <mat-card-subtitle>{{ qaItem.question }}</mat-card-subtitle>
+            <ng-container [ngSwitch]="qaItem.type">
+                <ng-container *ngSwitchCase="'PARAGRAPH'">
+                    <mat-card-content>{{ qaItem.answer }}</mat-card-content>
+                </ng-container>
+                <ng-container *ngSwitchCase="'CHECKBOX'">
+                    <mat-list>
+                        <mat-list-item *ngFor="let answerItem of qaItem.answer">{{ answerItem }}</mat-list-item>
+                    </mat-list>
+                </ng-container>
+            </ng-container>
+
+        </mat-card>
+    </ng-container>
+</ng-container>
+<ng-template #templateEmptyQA>
+    <mat-card style="width: 30%; margin: 20px;">
+        <mat-card-subtitle>QA is Empty</mat-card-subtitle>
+    </mat-card>
+</ng-template>
+<button mat-raised-button color="primary" style="margin: 20px" (click)="backToFormBuilder()">Back to Forms Builder</button>
